@@ -1,5 +1,5 @@
+import * as React from 'react';
 import { GluestackUIProvider, Image, Text } from '@gluestack-ui/themed';
-import React from 'react';
 import AppNavigator from './src/navigation/AppNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import { config } from './config/gluestack-ui.config';
@@ -12,32 +12,22 @@ import Toast, {
 import { moderateScale, verticalScale } from 'react-native-size-matters';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-import { ToastProvider } from 'react-native-toast-notifications'
-import { Box } from '@gluestack-ui/themed';
-import CustomToast from './src/components/CustomToast';
 
 
 function App() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <GluestackUIProvider config={config}>
-        <ToastProvider
-          offsetBottom={260}
-          swipeEnabled={true}
-          duration={100000}
-          renderToast={(toastOptions) => <CustomToast options={toastOptions} />}
-        >
-          <SafeAreaProvider>
-            <NavigationContainer>
-              <AppNavigator />
-              <Toast
-                topOffset={verticalScale(50)}
-                visibilityTime={6000}
-                config={toastConfig}
-              />
-            </NavigationContainer>
-          </SafeAreaProvider>
-        </ToastProvider>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            <AppNavigator />
+            <Toast
+              topOffset={verticalScale(50)}
+              visibilityTime={6000}
+              config={toastConfig}
+            />
+          </NavigationContainer>
+        </SafeAreaProvider>
       </GluestackUIProvider>
     </GestureHandlerRootView>
   );

@@ -4,7 +4,7 @@ import {DrinksIcon} from '../assets/svg/DrinksIcon';
 import {StyleSheet} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 
-const CustomToast = ({options}) => {
+const CustomToast = ({message}) => {
   return (
     <TouchableOpacity onPress={() => {}}>
       <Box
@@ -17,7 +17,7 @@ const CustomToast = ({options}) => {
         shadowColor="$black">
         {/* <Image source={} alt="Product image" /> */}
         <DrinksIcon />
-        <Text color="$textSecondary">{options.message}</Text>
+        <Text color="$textSecondary">{message}</Text>
         <Box w="$16" h="$16" bg="$tertiary" borderRadius="$full"></Box>
       </Box>
     </TouchableOpacity>

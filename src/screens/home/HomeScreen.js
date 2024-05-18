@@ -13,7 +13,6 @@ import {
 import CustomBottomSheet from '../../components/modals/CustomBottomSheet';
 
 import {useNavigation} from '@react-navigation/native';
-import {useToast} from 'react-native-toast-notifications';
 
 // react native vision camera
 import {
@@ -22,13 +21,14 @@ import {
   useCameraPermission,
 } from 'react-native-vision-camera';
 import CustomInput from '../../components/inputs/CustomInput';
+import CustomToast from '../../components/CustomToast';
 
 const HomeScreen = () => {
-  const toast = useToast();
   const navigation = useNavigation();
 
   const [photoUri, setPhotoUri] = useState(null);
   const [openBottomSheet, setOpenBottomSheet] = useState(false);
+  const [suggestProduct, setSuggestProduct] = useState(false);
 
   const camera = useRef(null);
   const device = useCameraDevice('back');
@@ -49,10 +49,9 @@ const HomeScreen = () => {
 
   const takePhoto = async () => {
     const file = await camera.current.takePhoto();
-    // toast.show('Photo Captured', {
-    //   data: {title: 'Toast title'},
-    //   offset: 100,
-    // });
+
+    // show product suggestion
+    setSuggestProduct(true);
 
     setPhotoUri(`file://${file.path}`);
   };
@@ -94,6 +93,9 @@ const HomeScreen = () => {
             borderRadius="$2xl"
           />
         </Box>
+      )}
+      {suggestProduct && (
+        <CustomToast message="This is a test product description" />
       )}
       <CustomInput borderRadius="$3xl" mx="$8" placeholder="Search" />
       <Center mt="$4">
